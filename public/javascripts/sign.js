@@ -22,7 +22,6 @@ $(function() {
                 // });
                 clearWarning($this.parent(), validator.form[this.name].errorMessage);
             } else {
-                console.log(this.name);
                 setWarning($this.parent(), validator.form[this.name].errorMessage);
             }
             $this.parent().removeClass('blue-div').addClass('used-div');
@@ -60,16 +59,16 @@ function clearAll () {
 }
 
 function checkEmpty() {
-    if (userInfo.name == '') setWarning($('#name-div'), validator.ERROR_MESSAGE[14]);
-    if (userInfo.id == '') setWarning($('#id-div'), validator.ERROR_MESSAGE[24]);
-    if (userInfo.phone == '') setWarning($('#phone-div'), validator.ERROR_MESSAGE[34]);
-    if (userInfo.email == '') setWarning($('#email-div'), validator.ERROR_MESSAGE[44]);
-    if (userInfo.password == '') setWarning($('#password-div'), validator.ERROR_MESSAGE[54]);
+    if (validator.form.username.errorMessage == '') setWarning($('#name-div'), validator.ERROR_MESSAGE[14]);
+    if (validator.form.sid.errorMessage == '') setWarning($('#id-div'), validator.ERROR_MESSAGE[24]);
+    if (validator.form.phone.errorMessage == '') setWarning($('#phone-div'), validator.ERROR_MESSAGE[34]);
+    if (validator.form.email.errorMessage == '') setWarning($('#email-div'), validator.ERROR_MESSAGE[44]);
+    if (validator.form.password.errorMessage == '') setWarning($('#password-div'), validator.ERROR_MESSAGE[54]);
 }
 
 
 function post () {
-    checkEmpty();
     $('input').not('#reset').blur();
+    checkEmpty();
     if (!validator.isFormValid() && this.type == 'submit') return false;
 }

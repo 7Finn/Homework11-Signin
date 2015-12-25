@@ -108,6 +108,7 @@ var validator = {
       this.form.phone.status = true;
       this.form.phone.errorMessage = this.ERROR_MESSAGE[0];
     }
+    return this.form.phone.status;
   },
 
   isEmailValid: function (email) {
