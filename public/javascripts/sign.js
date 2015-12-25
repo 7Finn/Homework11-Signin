@@ -34,7 +34,6 @@ $(function() {
     });
     $('#reset').click(clearAll);
     $('#post').click(post);
-
 });
 
 
@@ -59,11 +58,16 @@ function clearAll () {
 }
 
 function checkEmpty() {
-    if (validator.form.username.errorMessage == '') setWarning($('#name-div'), validator.ERROR_MESSAGE[14]);
-    if (validator.form.sid.errorMessage == '') setWarning($('#id-div'), validator.ERROR_MESSAGE[24]);
-    if (validator.form.phone.errorMessage == '') setWarning($('#phone-div'), validator.ERROR_MESSAGE[34]);
-    if (validator.form.email.errorMessage == '') setWarning($('#email-div'), validator.ERROR_MESSAGE[44]);
-    if (validator.form.password.errorMessage == '') setWarning($('#password-div'), validator.ERROR_MESSAGE[54]);
+    if (validator.form.username.errorMessage == '' && validator.form.username.status == false) 
+        setWarning($('#name-div'), validator.ERROR_MESSAGE[14]);
+    if (validator.form.sid.errorMessage == '' && validator.form.sid.status == false) 
+        setWarning($('#id-div'), validator.ERROR_MESSAGE[24]);
+    if (validator.form.phone.errorMessage == '' && validator.form.phone.status == false) 
+        setWarning($('#phone-div'), validator.ERROR_MESSAGE[34]);
+    if (validator.form.email.errorMessage == '' && validator.form.email.status == false) 
+        setWarning($('#email-div'), validator.ERROR_MESSAGE[44]);
+    if (validator.form.password.errorMessage == '' && validator.form.password.status == false) 
+        setWarning($('#password-div'), validator.ERROR_MESSAGE[54]);
 }
 
 

@@ -145,9 +145,6 @@ var validator = {
     }
     return true;
   },
-
-
-  
 }
 
 if (typeof module == 'object') { // 服务端共享
