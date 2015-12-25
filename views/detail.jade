@@ -1,0 +1,23 @@
+doctype html
+html
+	head
+		meta(charset="utf-8")
+		link(rel="stylesheet" type="text/css" href="stylesheets/style.css")
+		title Detail
+	body
+		div.container
+			h1 用户详情
+			div.info
+				form(id='form')
+					div.input-div.blue-div(id='name-div')
+						span.span.up-position 用户名
+						span.input #{user.username}
+					div.input-div.blue-div(id='id-div')
+						span.span.up-position 学号
+						span.input #{user.sid}
+					div.input-div.blue-div(id='phone-div')
+						span.span.up-position 电话
+						span.input #{user.phone}
+					div.input-div.blue-div(id='email-div')
+						span.span.up-position 邮箱
+						span.input #{user.email}
