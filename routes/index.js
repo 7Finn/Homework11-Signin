@@ -16,7 +16,6 @@ router.post('/signup', function(req, res, next) {
 		req.session.user = users[user.username] = user;
   		res.redirect('/detail');
 	} catch(err) {
-		console.log(err);
 		res.render('signup', {user: user, error: err});
 		// res.render('signup', {user: user, error: err.message});
 	}
@@ -27,7 +26,7 @@ router.all('*', function(req, res, next){
 });
 
 router.get('/detail', function(req, res, next) {
-  res.render('detail', { user: req.session.user });
+  	res.render('detail', { user: req.session.user });
 });
 
 
@@ -35,10 +34,12 @@ function checkUser(user) {
   	var errorMessages = {
   		username : "",
   		password : "",
+  		repeatPassword : "",
   		sid : "",
   		phone : "",
   		email : "",
   	};
+  	console.log(user);
   	for(var key in user) {
   		if (!validator.isFieldValid(key, user[key])) errorMessages[key] = validator.form[key].errorMessage;
     	if (!validator.isAttrValueUnique(users, user, key)) errorMessages[key] = "该信息已被使用×";

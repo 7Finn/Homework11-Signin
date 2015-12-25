@@ -18,8 +18,12 @@ html
 						span.warning #{error.username}
 					div.input-div(id='password-div')
 						span.span.init-position 密码
-						input.input(name='password' type='password' value=user.username)
+						input.input(name='password' type='password' value=user.password)
 						span.warning #{error.password}
+					div.input-div(id='repeatPassword-div')
+						span.span.init-position 重复密码
+						input.input(name='repeatPassword' type='password' value=user.repeatPassword)
+						span.warning #{error.repeatPassword}
 					div.input-div(id='id-div')
 						span.span.init-position 学号
 						input.input(name='sid' value=user.sid)

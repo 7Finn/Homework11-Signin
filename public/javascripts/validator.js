@@ -25,6 +25,7 @@ var validator = {
     50: '密码为6~12位×',
     51: '只能包含数字、字母、中划线、下划线×',
     54: '密码不可为空×',
+    55: '两次输入的密码不一致×',
   },
 
   form: {
@@ -36,9 +37,9 @@ var validator = {
       status: false,
       errorMessage: "",
     },
-    'repeat-password': {
+    repeatPassword: {
       status: false,
-      errorMessage: "两次输入的密码不一致",
+      errorMessage: "",
     },
     sid: {
       status: false,
@@ -72,6 +73,7 @@ var validator = {
   },
 
   isPasswordValid: function (password) {
+    this.password = password;
     this.form.password.status = false;
     var reNum = /^[a-zA-Z0-9_\-]+$/;
     var len = password.length;
@@ -86,7 +88,14 @@ var validator = {
   },
 
   isRepeatPasswordValid: function (repeatPassword) {
-    return this.form['repeat-password'].status = /^[1-9]\d{7}$/.test(repeatPassword);
+    var len = repeatPassword.length;
+    if (len == 0) this.form.repeatPassword.errorMessage = this.ERROR_MESSAGE[0];
+    else if (repeatPassword != this.password) this.form.repeatPassword.errorMessage = this.ERROR_MESSAGE[55];
+    else if (repeatPassword == this.password) {
+        this.form.repeatPassword.status = true;
+        this.form.repeatPassword.errorMessage = this.ERROR_MESSAGE[0];
+    }
+    return this.form.repeatPassword.status;
   },
 
   isSidValid: function (sid){
@@ -139,10 +148,12 @@ var validator = {
   },
 
   isFormValid: function(){
-    return this.form.username.status && this.form.sid.status 
+    return this.form.username.status 
+    && this.form.sid.status 
     && this.form.password.status
-    && this.form.phone.status && this.form.email.status 
-    && ((typeof window === 'object') || this.form['repeat-password'].status);
+    && this.form.phone.status 
+    && this.form.email.status 
+    && ((typeof window !== 'object') || this.form.repeatPassword.status);
   },
 
   getErrorMessage: function(fieldname){
@@ -151,7 +162,7 @@ var validator = {
 
   isAttrValueUnique: function(registry, user, attr){
     for (var key in registry) {
-      if (registry.hasOwnProperty(key) && registry[key][attr] == user[attr]) return false;
+      if (registry.hasOwnProperty(key) && registry[key][attr] == user[attr] && attr != 'password') return false;
     }
     return true;
   },
