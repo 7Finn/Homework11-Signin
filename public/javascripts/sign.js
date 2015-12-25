@@ -1,4 +1,5 @@
 $(function() {
+    reflash();
 	var $input = $('input').not('#reset');
     $input.focus(function() {
         $(this).parent().find('.span').removeClass('init-position').addClass('up-position');
@@ -10,16 +11,6 @@ $(function() {
         $this.parent().find('.span').removeClass('up-position').addClass('init-position');
         if ($(this).val()) {
             if (validator.isFieldValid(this.name, $(this).val())) {
-                // $.post('/api/validate-unique', {field: this.name, value: $(this).val() }, function(data, status){
-                //     if (status == 'success') {
-                //         if (data.isUnique){
-                //             setWarning($(self).parent(), "");
-                //         } else {
-                //             setWarning($(self).parent(), "该信息已使用×")
-                //             validator.form[self.name].status = false;
-                //         }
-                //     }
-                // });
                 clearWarning($this.parent(), validator.form[this.name].errorMessage);
             } else {
                 setWarning($this.parent(), validator.form[this.name].errorMessage);
@@ -50,11 +41,25 @@ function clearWarning(obj, errorMessage) {
     obj.find('.warning').text(errorMessage);
 }
 
-function clearAll () {
+function clearAll() {
 	$('.input-div').removeClass("blue-div red-div used-div");
 	$('.span').removeClass('used-span up-position warning-span').addClass('init-position');
 	$('.input').val("");
 	$('.warning').text("");
+}
+
+function reflash() {
+    var inputs = $('input').not('#reset');
+    for (var i = 0; i < inputs.length; ++i) {
+        if ($(inputs[i]).val() && $(inputs[i]).parent().find('.warning').text() != '') {
+            $(inputs[i]).parent().addClass('red-div');
+            $(inputs[i]).parent().find('.span').addClass('warning-span up-position');
+        } else if ($(inputs[i]).val()) {
+            $(inputs[i]).parent().removeClass('blue-div').addClass('used-div');
+            $(inputs[i]).parent().find('.span').removeClass('up-position').addClass('used-span');
+            
+        }
+    }
 }
 
 function checkEmpty() {

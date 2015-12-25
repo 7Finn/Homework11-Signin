@@ -15,23 +15,23 @@ html
 					div.input-div(id='name-div')
 						span.span.init-position 用户名
 						input.input(name='username' value=user.username)
-						span.warning #{username_warning}
+						span.warning #{error.username}
 					div.input-div(id='password-div')
 						span.span.init-position 密码
 						input.input(name='password' type='password' value=user.username)
-						span.warning #{password_warning}
+						span.warning #{error.password}
 					div.input-div(id='id-div')
 						span.span.init-position 学号
 						input.input(name='sid' value=user.sid)
-						span.warning #{sid_warning}
+						span.warning #{error.sid}
 					div.input-div(id='phone-div')
 						span.span.init-position 电话
 						input.input(name='phone' value=user.phone)
-						span.warning #{phone_warning}
+						span.warning #{error.phone}
 					div.input-div(id='email-div')
 						span.span.init-position 邮箱
 						input.input(name='email' value=user.email)
-						span.warning #{email_warning}
+						span.warning #{error.email}
 					input.button(type='reset' value='重置' id='reset')
 					button.button(value='提交' id='post') 提交
 			

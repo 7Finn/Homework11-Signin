@@ -36,6 +36,10 @@ var validator = {
       status: false,
       errorMessage: "",
     },
+    'repeat-password': {
+      status: false,
+      errorMessage: "两次输入的密码不一致",
+    },
     sid: {
       status: false,
       errorMessage: "",
@@ -79,6 +83,10 @@ var validator = {
       this.form.password.errorMessage = this.ERROR_MESSAGE[0];
     }
     return this.form.password.status;
+  },
+
+  isRepeatPasswordValid: function (repeatPassword) {
+    return this.form['repeat-password'].status = /^[1-9]\d{7}$/.test(repeatPassword);
   },
 
   isSidValid: function (sid){
@@ -131,8 +139,10 @@ var validator = {
   },
 
   isFormValid: function(){
-    return this.form.username.status && this.form.sid.status && this.form.password.status
-    && this.form.phone.status && this.form.email.status;
+    return this.form.username.status && this.form.sid.status 
+    && this.form.password.status
+    && this.form.phone.status && this.form.email.status 
+    && ((typeof window === 'object') || this.form['repeat-password'].status);
   },
 
   getErrorMessage: function(fieldname){
