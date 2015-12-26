@@ -146,6 +146,7 @@ h1 {
 }
 
 .switch-to-signin {
+	color: #444;
 	position: absolute;
 	font-size: 14px;
 	right: 10px;
@@ -153,6 +154,7 @@ h1 {
 }
 
 .switch-to-signup {
+	color: #444;
 	position: absolute;
 	font-size: 14px;
 	right: 10px;
