@@ -27,8 +27,9 @@ module.exports = function(db) {
     resave: false,
     saveUninitialized: false,
     secret: 'finn secret',
-  
+    cookie: { maxAge: 60000 },
   }));
+
   app.use(express.static(path.join(__dirname, 'public')));
   
   

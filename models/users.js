@@ -23,7 +23,6 @@ module.exports = function(db) {
 	}
 
 	return {
-
 		findUser: function(username, password) {
 			return users.findOne({username: username}).then(function(user) {
 				if (!user) return Promise.reject("用户不存在");
@@ -34,31 +33,6 @@ module.exports = function(db) {
 		createUser: function(user) {
 			return users.insert(user);
 		},
-		// checkUser: function(user) {
-		// 	var formatErrors = validator.findFormatErrors(user);
-		// 	return new Promise(function(resolve, reject) {
-		// 		var flag = true;
-		// 		for (var key in formatErrors) {
-		// 			if (formatErrors.hasOwnProperty(key)) {
-		// 				if (formatErrors[key] != '') flag = false;
-		// 			}
-		// 		}
-		// 		if (flag == true) resolve(user);
-		// 		else reject(formatErrors);
-		// 	}).then(function(){
-		// 		return users.findOne(user).then(function(existedUser){
-		// 			debug("existedUser: ", existedUser);
-		// 			var errorMessages = formatErrors;
-		// 			if (existedUser) {
-		// 				if (existedUser.username == user.username) errorMessages.username = "用户名已被注册";
-  //   					if (existedUser.sid == user.sid) errorMessages.sid = "学号已被注册";
-  //   					if (existedUser.phone == user.phone) errorMessages.phone = "电话已被注册";
-  //   					if (existedUser.email == user.email) errorMessages.email = "邮箱已被注册";
-		// 			}
-		// 			return existedUser ? Promise.reject(errorMessages) : Promise.resolve(user);
-		// 		});
-		// 	});
-		// },
 		checkAndCreateUser: function(user) {
 			var formatErrors = validator.findFormatErrors(user);
 			return new Promise(function(resolve, reject) {
