@@ -13,14 +13,14 @@ html
 				form(id='form')
 					div.input-div.blue-div(id='name-div')
 						span.span.up-position 用户名
-						span.input #{user.username}
+						input.input(value=user.username readonly="true")
 					div.input-div.blue-div(id='id-div')
 						span.span.up-position 学号
-						span.input #{user.sid}
+						input.input(value=user.sid readonly="true")
 					div.input-div.blue-div(id='phone-div')
 						span.span.up-position 电话
-						span.input #{user.phone}
+						input.input(value=user.phone readonly="true")
 					div.input-div.blue-div(id='email-div')
 						span.span.up-position 邮箱
-						span.input #{user.email}
+						input.input(value=user.email readonly="true")
 				a.button(id='signout' href="/signout") 退出登录

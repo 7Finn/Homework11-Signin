@@ -35,6 +35,7 @@ module.exports = function(db) {
         createUser: function(user) {
             return bcrypt.hash(user.password, null, null, function(error, hash) {
                 user.password = hash;
+                user.repeatPassword = hash;
                 return users.insert(user);
             });
         },

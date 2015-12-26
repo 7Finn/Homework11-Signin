@@ -65,5 +65,8 @@ module.exports = function(db) {
     });
   });
 
+  app.listen(8000);
+  console.log("The server has been started on http://localhost:8000/");
+
   return app;
 }

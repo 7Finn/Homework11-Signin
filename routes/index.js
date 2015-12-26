@@ -15,7 +15,7 @@ module.exports = function(db) {
     try {
       userManager.findUser(req.body.username, req.body.password, function(err, user) {
         if (err) {
-          res.render('signin', {error : err});
+          res.render('signin', {username: req.body.username, error : err});
         } else {
           req.session.user = user;
           console.log("登录成功:" + user);
