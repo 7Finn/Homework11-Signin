@@ -5,8 +5,8 @@ html
 		link(rel="stylesheet" type="text/css" href="stylesheets/style.css")
 		script(type="text/javascript" src="javascripts/jquery.js")
 		script(type='text/javascript' src='javascripts/validator.js')
-		script(type="text/javascript" src="javascripts/sign.js")
-		title SignUp
+		script(type="text/javascript" src="javascripts/signup.js")
+		title 注册
 	body
 		div.container
 			h1 用户注册
@@ -37,5 +37,7 @@ html
 						input.input(name='email' value=user.email)
 						span.warning #{error.email}
 					input.button(type='reset' value='重置' id='reset')
-					button.button(value='提交' id='post') 提交
+					button.button(type='submit' value='提交' id='post') 提交
+			span.switch-to-signin 已有账号?点击
+				a(href='/signin') 登录
 			

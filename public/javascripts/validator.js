@@ -55,6 +55,23 @@ var validator = {
     }
   }, 
 
+  findFormatErrors: function(user) {
+    var errorMessages = {
+      username : "",
+      password : "",
+      repeatPassword : "",
+      sid : "",
+      phone : "",
+      email : "",
+    };
+    for (var key in user) {
+      if (user.hasOwnProperty(key)) {
+        if (!validator.isFieldValid(key, user[key])) errorMessages[key] = validator.form[key].errorMessage;
+      }
+    }
+    return errorMessages;
+  },
+
   isUsernameValid: function (username){
     this.form.username.status = false;
     var reFirst = /[a-zA-Z]/;

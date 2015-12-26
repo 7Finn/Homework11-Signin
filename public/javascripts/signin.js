@@ -1,5 +1,6 @@
 $(function() {
     reflash();
+    selectHeight();
 	var $input = $('input').not('#reset');
     $input.focus(function() {
         $(this).parent().find('.span').removeClass('init-position').addClass('up-position');
@@ -10,11 +11,6 @@ $(function() {
         var $this = $(this);
         $this.parent().find('.span').removeClass('up-position').addClass('init-position');
         if ($(this).val()) {
-            if (validator.isFieldValid(this.name, $(this).val())) {
-                clearWarning($this.parent(), validator.form[this.name].errorMessage);
-            } else {
-                setWarning($this.parent(), validator.form[this.name].errorMessage);
-            }
             $this.parent().removeClass('blue-div').addClass('used-div');
             $this.parent().find('.span').removeClass('up-position').addClass('used-span');
         } else { //如果为空则不作处理
@@ -65,12 +61,6 @@ function reflash() {
 function checkEmpty() {
     if (validator.form.username.errorMessage == '' && validator.form.username.status == false) 
         setWarning($('#name-div'), validator.ERROR_MESSAGE[14]);
-    if (validator.form.sid.errorMessage == '' && validator.form.sid.status == false) 
-        setWarning($('#id-div'), validator.ERROR_MESSAGE[24]);
-    if (validator.form.phone.errorMessage == '' && validator.form.phone.status == false) 
-        setWarning($('#phone-div'), validator.ERROR_MESSAGE[34]);
-    if (validator.form.email.errorMessage == '' && validator.form.email.status == false) 
-        setWarning($('#email-div'), validator.ERROR_MESSAGE[44]);
     if (validator.form.password.errorMessage == '' && validator.form.password.status == false) 
         setWarning($('#password-div'), validator.ERROR_MESSAGE[54]);
 }
@@ -80,4 +70,18 @@ function post () {
     $('input').not('#reset').blur();
     checkEmpty();
     if (!validator.isFormValid() && this.type == 'submit') return false;
+}
+
+function selectHeight() {
+    var title = $(document).attr("title");
+    if (title == '注册') $('.container').css('height', 600);
+    if (title == '登录') $('.container').css('height', 300);
+}
+
+var ERROR_MESSAGE = {
+    // 成功
+    0: '',
+    // 用户名
+    14: '用户名不可为空×',
+    54: '密码不可为空×',
 }
