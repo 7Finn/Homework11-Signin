@@ -59,17 +59,17 @@ function reflash() {
 }
 
 function checkEmpty() {
-    if (validator.form.username.errorMessage == '' && validator.form.username.status == false) 
-        setWarning($('#name-div'), validator.ERROR_MESSAGE[14]);
-    if (validator.form.password.errorMessage == '' && validator.form.password.status == false) 
-        setWarning($('#password-div'), validator.ERROR_MESSAGE[54]);
+    if ($('#username').val == '' || $('#password').val() == '') {
+        setWarning($('#password-div'), "用户信息不可为空×");
+        return false;
+    }
+    return true;
 }
 
 
 function post () {
     $('input').not('#reset').blur();
-    checkEmpty();
-    if (!validator.isFormValid() && this.type == 'submit') return false;
+    if (!checkEmpty() && this.type == 'submit') return false;
 }
 
 function selectHeight() {

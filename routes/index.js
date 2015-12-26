@@ -15,10 +15,12 @@ module.exports = function(db) {
     userManager.findUser(req.body.username, req.body.password)
       .then(function(user){
         req.session.user = user;
+        console.log("登录成功:" + user);
         res.redirect('/detail');
       })
       .catch(function(error){
-        res.render('signin', {error : '用户密码错误'});
+        console.log("登录出错:" + error);
+        res.render('signin', {error : "账号密码错误"});
       });
   });
 
@@ -33,8 +35,7 @@ module.exports = function(db) {
 
   router.post('/signup', function(req, res, next) {
     var user = req.body;
-    userManager.checkUser(user)
-      .then(userManager.createUser(user))
+    userManager.checkAndCreateUser(user)
       .then(function(){
         req.session.user = user;
         debug("User session", user);
@@ -47,13 +48,15 @@ module.exports = function(db) {
   });
 
   router.all('*', function(req, res, next){
-    req.session.user ? next() : res.redirect('/signin');
+    req.session.user ? res.render('detail', { user: req.session.user }) : res.redirect('/signin');
   });
-  
+
   router.get('/detail', function(req, res, next) {
       res.render('detail', { user: req.session.user });
   });
 
+
+  
   return router;
 }
 

@@ -13,9 +13,7 @@ var mongourl = 'mongodb://localhost:27017/signin';
 mongo.connect(mongourl).catch(function(error){
   debug("Connect to mongodb " + mongourl + " was failed with error: ", error);
 }).then(function(db){
-  console.log("Connect to mongodb " + mongourl + " success");
   var app = require('../app')(db);
-  console.log("Require App success");
   /**
  * Get port from environment and store in Express.
  */

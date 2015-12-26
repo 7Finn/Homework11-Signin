@@ -13,10 +13,10 @@ html
 				form(method='post' id='form')
 					div.input-div(id='name-div')
 						span.span.init-position 用户名
-						input.input(name='username')
+						input.input(name='username' id="username")
 					div.input-div(id='password-div')
 						span.span.init-position 密码
-						input.input(name='password' type='password')
+						input.input(name='password' type='password' id="password")
 						span.warning #{error}
 					input.button(type='reset' value='清除' id='reset')
 					button.button(type='submit' value='提交' id='post') 登录

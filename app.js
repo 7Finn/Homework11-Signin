@@ -9,9 +9,7 @@ var FileStore = require('session-file-store')(session);
 
 
 module.exports = function(db) {
-  console.log("Ready to require routes");
   var routes = require('./routes/index')(db);
-  console.log("Require routes success");
   var app = express();
 
   // view engine setup
@@ -34,9 +32,7 @@ module.exports = function(db) {
   app.use(express.static(path.join(__dirname, 'public')));
   
   
-  
   app.use('/', routes);
-  
   // catch 404 and forward to error handler
   app.use(function(req, res, next) {
     var err = new Error('Not Found');

@@ -3,6 +3,8 @@ html
 	head
 		meta(charset="utf-8")
 		link(rel="stylesheet" type="text/css" href="stylesheets/style.css")
+		script(type="text/javascript" src="javascripts/jquery.js")
+		script(type="text/javascript" src="javascripts/signout.js")
 		title 详情
 	body
 		div.container
@@ -21,3 +23,4 @@ html
 					div.input-div.blue-div(id='email-div')
 						span.span.up-position 邮箱
 						span.input #{user.email}
+				a.button(id='signout' href="/signout") 退出登录
